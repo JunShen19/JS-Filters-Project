@@ -1,17 +1,16 @@
 import { products } from "./products.js";
 
-console.log(products);
 // make a copy and assign to a new variable
-let product = [...products];
-console.log(product);
+let filteredProducts = [...products];
+console.log(filteredProducts);
 
 // select .products-container
 const productsContainer = document.querySelector(".products-container");
-console.log(productsContainer);
 
-const displayProducts = (products) => {
-  const productHtml = products.map((product) => {
-    return `<article class="product">
+const displayProducts = () => {
+  productsContainer.innerHTML = products
+    .map((product) => {
+      return `<article class="product" id=${product.id}>
           <img
             src=${product.image}
             class="product-img img"
@@ -22,9 +21,8 @@ const displayProducts = (products) => {
           </footer>
         </article>
     `;
-  });
-  return productHtml.join("");
+    })
+    .join("");
 };
 
-const productHtml = displayProducts(product);
-productsContainer.innerHTML = productHtml;
+displayProducts();
